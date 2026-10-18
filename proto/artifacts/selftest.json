@@ -1,0 +1,186 @@
+{
+  "scenariosPassed": 4,
+  "modelApiCalls": 0,
+  "results": [
+    {
+      "scenario": "four_random_bots",
+      "seed": 1018,
+      "rules": {
+        "seats": 4,
+        "initialHand": 3,
+        "maxRounds": 10,
+        "turnTimeoutMs": 1000,
+        "enabledEffects": [
+          "skip",
+          "reverse",
+          "draw2",
+          "wild"
+        ],
+        "stopOnEmptyHand": true,
+        "allowVoluntaryDraw": true,
+        "reverseSkipsInTwoPlayer": true
+      },
+      "result": "empty_hand",
+      "winners": [
+        "s2"
+      ],
+      "wallMs": 118,
+      "waitCalls": 21,
+      "acts": 18,
+      "totalSteps": 18,
+      "timeoutSteps": 0,
+      "averageMs": 4.39,
+      "slowestStep": {
+        "turnId": 1,
+        "round": 1,
+        "seatId": "s1",
+        "action": "draw",
+        "startedAt": 1792253359221,
+        "actedAt": 1792253359229,
+        "elapsedMs": 8
+      },
+      "slowestRound": {
+        "round": 1,
+        "steps": 4,
+        "elapsedMs": 27,
+        "complete": true
+      }
+    },
+    {
+      "scenario": "full_ten_rounds",
+      "seed": 77,
+      "rules": {
+        "seats": 4,
+        "initialHand": 3,
+        "maxRounds": 10,
+        "turnTimeoutMs": 1000,
+        "enabledEffects": [
+          "skip",
+          "reverse",
+          "draw2",
+          "wild"
+        ],
+        "stopOnEmptyHand": false,
+        "allowVoluntaryDraw": true,
+        "reverseSkipsInTwoPlayer": true
+      },
+      "result": "round_limit",
+      "winners": [
+        "s1"
+      ],
+      "wallMs": 185,
+      "waitCalls": 43,
+      "acts": 40,
+      "totalSteps": 40,
+      "timeoutSteps": 0,
+      "averageMs": 4.28,
+      "slowestStep": {
+        "turnId": 24,
+        "round": 6,
+        "seatId": "s4",
+        "action": "play",
+        "startedAt": 1792253359411,
+        "actedAt": 1792253359419,
+        "elapsedMs": 8
+      },
+      "slowestRound": {
+        "round": 9,
+        "steps": 4,
+        "elapsedMs": 22,
+        "complete": true
+      }
+    },
+    {
+      "scenario": "one_silent_seat",
+      "seed": 28,
+      "rules": {
+        "seats": 4,
+        "initialHand": 3,
+        "maxRounds": 10,
+        "turnTimeoutMs": 120,
+        "enabledEffects": [
+          "skip",
+          "reverse",
+          "draw2",
+          "wild"
+        ],
+        "stopOnEmptyHand": false,
+        "allowVoluntaryDraw": true,
+        "reverseSkipsInTwoPlayer": true
+      },
+      "result": "round_limit",
+      "winners": [
+        "s3",
+        "s4"
+      ],
+      "wallMs": 1509,
+      "waitCalls": 32,
+      "acts": 30,
+      "totalSteps": 40,
+      "timeoutSteps": 10,
+      "averageMs": 37.02,
+      "slowestStep": {
+        "turnId": 13,
+        "round": 4,
+        "seatId": "s1",
+        "action": "timeout",
+        "startedAt": 1792253359958,
+        "actedAt": 1792253360080,
+        "elapsedMs": 122
+      },
+      "slowestRound": {
+        "round": 3,
+        "steps": 4,
+        "elapsedMs": 157,
+        "complete": true
+      }
+    },
+    {
+      "scenario": "all_silent_no_polling",
+      "seed": 9,
+      "rules": {
+        "seats": 4,
+        "initialHand": 3,
+        "maxRounds": 2,
+        "turnTimeoutMs": 30,
+        "enabledEffects": [
+          "skip",
+          "reverse",
+          "draw2",
+          "wild"
+        ],
+        "stopOnEmptyHand": true,
+        "allowVoluntaryDraw": true,
+        "reverseSkipsInTwoPlayer": true
+      },
+      "result": "round_limit",
+      "winners": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "wallMs": 274,
+      "waitCalls": 0,
+      "acts": 0,
+      "totalSteps": 8,
+      "timeoutSteps": 8,
+      "averageMs": 31,
+      "slowestStep": {
+        "turnId": 1,
+        "round": 1,
+        "seatId": "s1",
+        "action": "timeout",
+        "startedAt": 1792253361015,
+        "actedAt": 1792253361047,
+        "elapsedMs": 32
+      },
+      "slowestRound": {
+        "round": 1,
+        "steps": 4,
+        "elapsedMs": 124,
+        "complete": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"name":"shinkai-web","private":true,"type":"module","scripts":{"build":"node build.mjs","dev":"python3 -m http.server 5173 --directory dist"}}

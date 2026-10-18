@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.npm-cache/
+.runtime/
+.env
+.mcp.json
+.codex/

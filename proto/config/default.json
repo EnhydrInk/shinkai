@@ -1,0 +1,10 @@
+{
+  "seats": 4,
+  "initialHand": 7,
+  "maxRounds": 10,
+  "turnTimeoutMs": 60000,
+  "enabledEffects": ["skip", "reverse", "draw2", "wild"],
+  "stopOnEmptyHand": true,
+  "allowVoluntaryDraw": true,
+  "reverseSkipsInTwoPlayer": true
+}

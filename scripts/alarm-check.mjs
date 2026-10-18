@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {writeFile} from 'node:fs/promises';
+import {Client} from '@modelcontextprotocol/sdk/client/index.js';
+import {StreamableHTTPClientTransport} from '@modelcontextprotocol/sdk/client/streamableHttp.js';
+const base=process.argv[2];const post=async(p,b)=>{let last;for(let i=0;i<4;i++)try{return await fetch(base+p,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b),signal:AbortSignal.timeout(15000)}).then(r=>r.json());}catch(e){last=e;}throw last;};
+const room=await post('/api/rooms',{seats:2,maxRounds:1});assert.ok(room.ok);
+const seats=[];for(const name of ['Silent Otter','Silent Octopus'])seats.push(await post(`/rooms/${room.roomId}/seats`,{name,requestId:crypto.randomUUID()}));
+const clients=seats.map((_,i)=>new Client({name:'alarm-'+i,version:'1.0.0'}));
+await Promise.all(clients.map(c=>c.connect(new StreamableHTTPClientTransport(new URL(room.mcpUrl)))));
+const call=async(i,name,args={})=>{const r=await clients[i].callTool({name,arguments:{token:seats[i].aiToken,...args}},undefined,{timeout:35000});return JSON.parse(r.content.find(c=>c.type==='text').text);};
+await Promise.all(clients.map((_,i)=>call(i,'join_game')));
+const startedAt=Date.now();const waits=clients.map((_,i)=>call(i,'wait_for_my_turn'));
+const first=await waits[0];assert.equal(first.status,'your_turn');const initialHand=first.state.you.hand.length;
+await waits[1];await Promise.all(clients.map(c=>c.close()));
+await writeFile('.runtime/alarm-room.json',JSON.stringify({base,roomId:room.roomId,seats,startedAt,initialHand,deadline:first.state.deadline}));
+console.log(JSON.stringify({roomId:room.roomId,startedAt,checkAfter:first.state.deadline+3000,ready:true,noQueriesUntilDeadline:true}));
